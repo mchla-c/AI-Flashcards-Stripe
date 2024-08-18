@@ -1,20 +1,18 @@
-import Image from "next/image";
-import getStripe from "@/utils/get-stripe";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import { AppBar, Button, Container, Typography, Toolbar, Box, Grid } from "@mui/material";
-import Head from 'next/head';
+'use client'
 
-export default function Home() {
+import React from 'react';
+import { AppBar, Toolbar, Typography, Button, Box, Grid } from '@mui/material';
+import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react';
+
+const HomePage = () => {
   return (
-    <Container maxWidth="100vw">
-      <Head>
-        <title>Flashcard SaaS</title>
-        <meta name="description" content="Create a flashcard from your text" />
-      </Head>
-
+    <div>
+      {/* Header and Navigation */}
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" style={{flexGrow: 1}}>Flashcard SaaS</Typography>
+          <Typography variant="h6" style={{ flexGrow: 1 }}>
+            Flashcard SaaS
+          </Typography>
           <SignedOut>
             <Button color="inherit" href="/sign-in">Login</Button>
             <Button color="inherit" href="/sign-up">Sign Up</Button>
@@ -25,29 +23,60 @@ export default function Home() {
         </Toolbar>
       </AppBar>
 
-      <Box sx={{my: 6, textAlign: 'center',}}>
-        <Typography variant="h4">Pricing</Typography>
+      {/* Hero Section */}
+      <Box sx={{ textAlign: 'center', my: 4 }}>
+        <Typography variant="h2" component="h1" gutterBottom>
+          Welcome to Flashcard SaaS
+        </Typography>
+        <Typography variant="h5" component="h2" gutterBottom>
+          The easiest way to create flashcards from your text.
+        </Typography>
+        <Button variant="contained" color="primary" sx={{ mt: 2, mr: 2 }} href="/generate">
+          Get started
+        </Button>
+      </Box>
+
+      {/* Features Section */}
+      <Box sx={{ my: 6 }}>
+        <Typography variant="h4" component="h2" gutterBottom>Features</Typography>
         <Grid container spacing={4}>
-          <Grid item xs={12} ms={4}>
-            <Box sx={{p: 3, border: '1px solid', borderColor: 'grey.300', borderRadius: 2,}}>
-              <Typography variant="h6">Basic Pricing</Typography>
-              <Typography variant="h5" color="red">$5 / Month</Typography>
-              <Typography>Access to basic flashcard features and limited storage.</Typography>
-              <Button variant="contained" color="primary">Choose Basic</Button>
-            </Box>
+          <Grid item xs={12} sm={6} md={4}>
+            <Typography variant="h6">Easy Text Input</Typography>
+            <Typography>Simply input your text and let our software do the rest. Creating flashcards has never been easier.</Typography>
           </Grid>
-        </Grid>
-        <Grid container spacing={4}>
-          <Grid item xs={12} ms={4}>
-            <Box sx={{p: 3, border: '1px solid', borderColor: 'grey.300', borderRadius: 2,}}>
-              <Typography variant="h6">Premium Pricing</Typography>
-                <Typography variant="h5" color="red">$10 / Month</Typography>
-                <Typography>Access to exculsive flashcard features and unlimited storage.</Typography>
-                <Button variant="contained" color="primary">Choose Basic</Button>
-              </Box>
+          <Grid item xs={12} sm={6} md={4}>
+            <Typography variant="h6">Smart Flashcards</Typography>
+            <Typography>Our AI intelligently breaks down your text into concise flashcards, perfect for studying.</Typography>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+            <Typography variant="h6">Acessible Anywhere</Typography>
+            <Typography>Acess your flashcards from any device, at any time. Study on the go with ease.</Typography>
           </Grid>
         </Grid>
       </Box>
-    </Container>
-  )
-}
+
+      {/* Pricing Section */}
+      <Box sx={{ my: 6, textAlign: 'center' }}>
+        <Typography variant="h4" component="h2" gutterBottom>Pricing</Typography>
+        <Grid container spacing={4} justifyContent="center">
+          <Grid item xs={12} sm={6} md={4}>
+            <Typography variant="h6">Basic Plan</Typography>
+            <Typography>$0/month</Typography>
+            <Button variant="contained" color="primary">
+              Choose Plan
+            </Button>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+            <Typography variant="h6">Pro Plan</Typography>
+            <Typography>$10/month</Typography>
+            <Button variant="contained" color="primary">
+              Choose Plan
+            </Button>
+          </Grid>
+        </Grid>
+      </Box>
+    </div>
+  );
+};
+
+export default HomePage;
