@@ -1,48 +1,16 @@
 'use client'
 
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button, Box, Grid, Container, Card, CardContent } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Box, Grid } from '@mui/material';
 import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react';
-import Layout from './api/components/layout';
-import BoltIcon from '@mui/icons-material/Bolt';
-import { Kanit } from 'next/font/google';
-import { createTheme,ThemeProvider } from "@mui/material/styles"
-import CssBaseline from '@mui/material/CssBaseline';
+import Layout from '../api/components/layout';
 import KeyboardIcon from '@mui/icons-material/Keyboard';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import DevicesOtherIcon from '@mui/icons-material/DevicesOther';
 
-export const theme = createTheme({ 
-  palette: {
-    primary: {
-      main: '#921a40',
-    },
-    secondary: {
-      main: '#c75b7a',
-    },
-    background: {
-      paper: '#f4d9d0',
-    },
-  },
-  typography: {
-    fontFamily: 'Kanit',
-    h5: {
-      color: '#A74766'
-    },
-    h4: {
-      color: '#921A40'
-    },
-    h2: {
-      color: '#66122C'
-    },
-  },
-})
-
-
-const HomePage = () => {
+export default function Home() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline/>
+    <Layout>
     <div>
       {/* Header and Navigation
       <AppBar position="static">
@@ -59,41 +27,17 @@ const HomePage = () => {
           </SignedIn>
         </Toolbar>
       </AppBar> */}
-      <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters >
-          <BoltIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: '#F4D9D0',
-              textDecoration: 'none',
-            }}
-          >
-            Flash AI
-          </Typography>
-        </Toolbar>
-        </Container>
-      </AppBar>
 
       {/* Hero Section */}
       <Box sx={{ textAlign: 'center', my: 4 }} padding={6}>
-        <Typography variant="h2" component="h1" gutterBottom fontWeight='bold' >
+        <Typography variant="h2" component="h1" gutterBottom fontWeight='bold'>
           Welcome to Flash AI
         </Typography>
         <Typography variant="h5" component="h2" gutterBottom>
           The easiest way to create flashcards from your text.
         </Typography>
-        <Button variant="contained" color="primary" sx={{ mt: 2, mr: 2 }} href="/sign-up">
-          Try it for Free
+        <Button variant="contained" color="primary" sx={{ mt: 2, mr: 2 }} href="/generate">
+          Get Started
         </Button>
       </Box>
 
@@ -131,29 +75,28 @@ const HomePage = () => {
         </Grid>
       </Box>
 
-      {/* Pricing Section
-      <Box sx={{ my: 6, textAlign: 'center' }}>
-        <Typography variant="h4" component="h2" gutterBottom>Pricing</Typography>
-        <Grid container spacing={4} justifyContent="center">
+      {/* Pricing Section */}
+      <Box sx={{ my: 6, textAlign: 'center' }} padding={2}>
+        <Typography variant="h4" component="h2" gutterBottom fontWeight='bold'>Pricing</Typography>
+        <Grid container spacing={2} justifyContent="center" padding={2}>
           <Grid item xs={12} sm={6} md={4}>
-            <Typography variant="h6">Basic Plan</Typography>
-            <Typography>$0/month</Typography>
+            <Typography variant="h5" fontWeight='medium'>Basic Plan</Typography>
+            <Typography sx={{my: 1}}>$0/month</Typography>
             <Button variant="contained" color="primary">
               Choose Plan
             </Button>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Typography variant="h6">Pro Plan</Typography>
-            <Typography>$10/month</Typography>
+            <Typography variant="h5" fontWeight='medium'>Pro Plan</Typography>
+            <Typography sx={{my: 1}}>$10/month</Typography>
             <Button variant="contained" color="primary">
               Choose Plan
             </Button>
           </Grid>
         </Grid>
-      </Box> */}
+      </Box>
     </div>
-    </ThemeProvider>
+    </Layout>
   );
-};
+}
 
-export default HomePage;
